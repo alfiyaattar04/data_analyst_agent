@@ -1,4 +1,4 @@
-from .llm_client import GeminiClient
+from llm_client import GeminiClient
 from typing import Dict
 import sys
 import os

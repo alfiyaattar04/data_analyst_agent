@@ -7,7 +7,7 @@ import json
 import os
 import duckdb
 from typing import Any, Dict, List
-from .llm_client import GeminiClient
+from llm_client import GeminiClient
 
 
 class DataAnalyzer:
@@ -17,7 +17,7 @@ class DataAnalyzer:
 
     async def structure_data(self, html_content: str, task_info: Dict) -> pd.DataFrame:
         """Convert scraped HTML to structured data"""
-        from .scraper import WebScraper
+        from scraper import WebScraper
         from bs4 import BeautifulSoup
         scraper = WebScraper()
 

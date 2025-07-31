@@ -1,4 +1,3 @@
-from src.agent import DataAnalystAgent
 from flask import Flask, request, jsonify
 import os
 import sys
@@ -7,8 +6,21 @@ import asyncio
 from werkzeug.utils import secure_filename
 
 # Add src to path
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(current_dir)
+src_path = os.path.join(project_root, 'src')
+sys.path.insert(0, src_path)
 
+# Import modules
+try:
+    from agent import DataAnalystAgent
+except ImportError as e:
+    print(f"Import error: {e}")
+    print(f"Current directory: {current_dir}")
+    print(f"Project root: {project_root}")
+    print(f"Src path: {src_path}")
+    print(f"Sys path: {sys.path}")
+    raise
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
@@ -68,5 +80,4 @@ def home():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0',
-            port=int(os.environ.get('PORT', 5000)))
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))

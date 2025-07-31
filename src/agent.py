@@ -2,10 +2,12 @@ import asyncio
 import json
 import re
 from typing import List, Dict, Any, Union
+
+# Import local modules
 from llm_client import GeminiClient
-from .scraper import WebScraper
-from .analyzer import DataAnalyzer
-from .visualizer import ChartGenerator
+from scraper import WebScraper
+from analyzer import DataAnalyzer
+from visualizer import ChartGenerator
 
 
 class DataAnalystAgent:
